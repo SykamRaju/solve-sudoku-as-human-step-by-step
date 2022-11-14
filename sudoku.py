@@ -36,6 +36,43 @@ def print_sudoku(board):
 
 
 
+##########################################
+#
+# Solve sudoku grid
+#
+##########################################
+
+
+def solve_sudoku(board):
+
+    #
+    #       Step 1 :
+    #       check for last free cell
+    #
+
+    last_free_cell(board)
+
+
+
+def last_free_cell(board):
+    for i in range(len(board)):
+        check_last_free_cell(i,board[i])
+
+
+
+def check_last_free_cell(i,r):
+    if(r.count(0)==1):
+        index = r.index(0)
+        for k in range(1,10):
+            if(r.count(k)!=1):
+                grid[i][index] = k
+                print(f"\nUsing Last Free Cell Method..")
+                print(f"Found {k} at {i+1} row @ {index+1} position")
+                print_sudoku_board(grid)
+
+
+
+
 
 ##########################################
 #
@@ -44,3 +81,6 @@ def print_sudoku(board):
 ##########################################
 
 print_sudoku_board(grid)
+solve_sudoku(grid)
+print(f'Sudoku solved till now')
+print_sudoku(grid)
